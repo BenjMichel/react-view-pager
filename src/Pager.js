@@ -301,13 +301,15 @@ class Pager {
         // physics by animating to a large value, the final value provided in getTransformValue
         // will return the proper wrapped value
         trackPosition -= (Math.floor(this.currentIndex / this.views.length) || 0) * trackSize
+      } else {
+        trackPosition = trackPosition % trackSize;
       }
 
-      if (contain) {
-        const trackEndOffset = ((viewsToShow === 'auto' && autoSize) || viewsToShow <= 1)
-          ? 0 : this.getFrameSize({ autoSize: false })
-        trackPosition = clamp(trackPosition, trackEndOffset - trackSize, 0)
-      }
+      // if (contain) {
+      //   const trackEndOffset = ((viewsToShow === 'auto' && autoSize) || viewsToShow <= 1)
+      //     ? 0 : this.getFrameSize({ autoSize: false })
+      //   trackPosition = clamp(trackPosition, trackEndOffset - trackSize, 0)
+      // }
     }
 
     this.trackPosition = trackPosition
